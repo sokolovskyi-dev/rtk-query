@@ -5,7 +5,7 @@ export function Component() {
     <div className="container mx-auto p-4">
       <header className="rounded p-4 shadow-xl">
         <nav>
-          <NavLink to="/dashboard">Dashboard</NavLink>
+          <NavLink to="/home">Home</NavLink>
         </nav>
       </header>
       <main>
