@@ -72,3 +72,10 @@ button:focus-visible {
 .active {
   color: rgb(255, 140, 0);
 }
+
+input {
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 4px;
+  margin-right: 5px;
+}

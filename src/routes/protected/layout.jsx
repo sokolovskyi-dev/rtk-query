@@ -4,8 +4,9 @@ export function Component() {
   return (
     <div className="container mx-auto p-4">
       <header className="rounded p-4 shadow-xl">
-        <nav>
+        <nav className="flex gap-4">
           <NavLink to="/home">Home</NavLink>
+          <NavLink to="/todos">Todos</NavLink>
         </nav>
       </header>
       <main>
