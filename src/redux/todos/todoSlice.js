@@ -7,14 +7,13 @@ export const todoApi = createApi({
     fetchTodos: build.query({
       query: () => `tasks`,
     }),
-    createTodo: build.mutation({
-      query: (newTodo) => ({
-        url: `tasks`,
-        method: 'POST',
-        body: newTodo,
+    deleteTodo: build.mutation({
+      query: (todoId) => ({
+        url: `tasks/${todoId}`,
+        method: 'DELETE',
       }),
     }),
   }),
 });
 
-export const { useFetchTodosQuery } = todoApi;
+export const { useFetchTodosQuery, useDeleteTodoMutation } = todoApi;
