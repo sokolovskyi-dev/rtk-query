@@ -14,6 +14,10 @@ export const router = createBrowserRouter([
         path: 'todos',
         lazy: () => import('../routes/protected/todos'),
       },
+      {
+        path: 'todos/create',
+        lazy: () => import('../routes/protected/create'),
+      },
     ],
   },
 ]);

@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 
-export const TodoList = ({ todos, onDelete, deleting }) => {
+export const TodoListItem = ({ todos, onDelete, deleting }) => {
   return (
     <>
       <Link to="/todos/create" className="ml-10">

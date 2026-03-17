@@ -1,10 +1,14 @@
-import { useState } from 'react';
+// import { useState } from 'react';
+
+import { useSearchParams } from 'react-router';
 
 import Spinner from '@/components/spinner';
 import { useGetPokemonByNameQuery } from '@/redux/pokemon';
 
 export function Component() {
-  const [pokemonName, setPokemonName] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const pokemonName = searchParams.get('name') || '';
+  // const [pokemonName, setPokemonName] = useState('');
   const { data, error, isFetching, isError } = useGetPokemonByNameQuery(pokemonName, {
     skip: pokemonName === '',
     // pollingInterval: 3000,
@@ -13,12 +17,14 @@ export function Component() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setPokemonName(e.currentTarget.elements.pokemonName.value);
+    const value = e.currentTarget.elements.pokemonName.value.trim();
+    if (!value) return;
+    setSearchParams({ name: value });
     e.currentTarget.reset();
   };
 
   const showNotFoundError = isError && error.originalStatus === 404;
-  const shoePokemonData = data && !isFetching && !isError;
+  const showPokemonData = data && !isFetching && !isError;
 
   return (
     <>
@@ -28,7 +34,13 @@ export function Component() {
       </form>
       {isFetching && <Spinner />}
       {showNotFoundError && <p>UPS!!! Pokemon with name {pokemonName} not found </p>}
-      {shoePokemonData && <h1>{data.name}</h1>}
+      {showPokemonData && <h1 className="mt-5">{data.name}</h1>}
+      {showPokemonData && (
+        <img
+          src={data.sprites.front_shiny}
+          className="w-50 drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
+        />
+      )}
     </>
   );
 }
