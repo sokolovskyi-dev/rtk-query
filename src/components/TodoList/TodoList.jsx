@@ -1,6 +1,8 @@
 import { Link } from 'react-router';
 
-export const TodoList = ({ todos, onDelete, deleting }) => {
+import { TodoListItem } from '../TodoListItem/TodoListItem';
+
+export const TodoList = ({ todos }) => {
   return (
     <>
       <Link to="/todos/create" className="ml-10">
@@ -8,12 +10,7 @@ export const TodoList = ({ todos, onDelete, deleting }) => {
       </Link>
       <ul className="p-8">
         {todos.map((todo) => (
-          <li key={todo.id} className="list-disc pr-5">
-            {todo.text}
-            <button className="ml-4 bg-red-500/70! p-1!" onClick={() => onDelete(todo.id)}>
-              {deleting ? 'Deleting...' : 'Delete'}
-            </button>
-          </li>
+          <TodoListItem key={todo.id} {...todo} />
         ))}
       </ul>
     </>

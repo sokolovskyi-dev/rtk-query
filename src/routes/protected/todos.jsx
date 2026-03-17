@@ -1,14 +1,22 @@
+import { Outlet } from 'react-router';
+
 import Spinner from '@/components/spinner';
 import { TodoList } from '@/components/TodoList/TodoList';
-import { useDeleteTodoMutation, useFetchTodosQuery } from '@/redux/todos/todoSlice';
+import { useFetchTodosQuery } from '@/redux/todos/todoSlice';
 
 export function Component() {
   const { data, isFetching } = useFetchTodosQuery();
-  const [deleteTodo, { isLoading: isDeleting }] = useDeleteTodoMutation();
+
   return (
-    <>
-      {isFetching && <Spinner />}
-      {data && <TodoList todos={data} onDelete={deleteTodo} deleting={isDeleting} />}
-    </>
+    <div className="flex gap-16">
+      <div>
+        {isFetching && <Spinner />}
+        {data && <TodoList todos={data} />}
+      </div>
+
+      <div>
+        <Outlet />
+      </div>
+    </div>
   );
 }

@@ -13,6 +13,7 @@ export function Component() {
   }
   return (
     <div className="mt-10">
+      <h2>Create todo</h2>
       <form
         onSubmit={handleSubmit}
         autoComplete="off"
